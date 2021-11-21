@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <h1>COVID19 TRACKER</h1>
+      {/* Header */}
+      {/* Title + dropdown countries */}
+
+      <FormControl variant="outlined" className="app__dropdown">
+        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          label="Age"
         >
-          Learn React
-        </a>
-      </header>
+          <MenuItem value={0}>zero</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+
+      {/* info boxes */}
+      {/* info boxes */}
+      {/* info boxes */}
+
+      {/* Table */}
+      {/* chart */}
+
+      {/* Map */}
     </div>
   );
 }
