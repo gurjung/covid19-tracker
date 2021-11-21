@@ -1,11 +1,16 @@
-*{
-  margin: 0
+* {
+  margin: 0;
 }
 
-.app__header{
+.app__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  border: 2px solid black;
+}
+
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
