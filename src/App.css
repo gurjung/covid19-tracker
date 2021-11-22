@@ -25,8 +25,29 @@
   flex: 0.8;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 990px) {
   .app {
     flex-direction: column;
   }
+}
+
+/* table section */
+
+.table {
+  margin-top: 20px;
+  overflow: scroll;
+  height: 400px;
+  color: #6a5d5d;
+}
+
+.table tr {
+  display: flex;
+  justify-content: space-between;
+}
+.table td {
+  padding: 0.5rem;
+}
+
+.table tr:nth-of-type(odd) {
+  background-color: #f3f2f8;
 }

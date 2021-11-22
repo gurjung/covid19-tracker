@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 export const Header = () => {
   const [country, setCountry] = useState("worldwide");
   const dispatch = useDispatch();
-  const data = useUrlFetch("https://disease.sh/v3/covid-19/countries");
+  const url = "https://disease.sh/v3/covid-19/countries";
+  const data = useUrlFetch(url);
 
   const countries = data.map((item) => {
     return {
