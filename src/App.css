@@ -20,3 +20,13 @@
   justify-content: space-evenly;
   padding: 20px;
 }
+
+.app__left {
+  flex: 0.8;
+}
+
+@media screen and (max-width: 480px) {
+  .app {
+    flex-direction: column;
+  }
+}
