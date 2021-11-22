@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material/";
 import { useUrlFetch } from "../Hooks/useUrlFetch";
+import { setCountryCode } from "../Actions";
+import { useDispatch, useSelector } from "react-redux";
+
 export const Header = () => {
-  //   https://disease.sh/v3/covid-19/countries
   const [country, setCountry] = useState("worldwide");
+  const dispatch = useDispatch();
   const data = useUrlFetch("https://disease.sh/v3/covid-19/countries");
 
   const countries = data.map((item) => {
@@ -14,9 +17,11 @@ export const Header = () => {
   });
 
   const onCountryChange = (e) => {
-    const countryCode = e.target.value;
-    console.log(countryCode, "countryCode");
-    setCountry(countryCode);
+    const code = e.target.value;
+    console.log(code, "header countryCode");
+    // code is Country Code
+    setCountry(code);
+    dispatch(setCountryCode(code));
   };
   return (
     <div className="app__header">
