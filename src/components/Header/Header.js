@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material/";
-import { useUrlFetch } from "../Hooks/useUrlFetch";
-import { setCountryCode } from "../Actions";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useUrlFetch } from "../../hooks/index";
+import { setCountryCode } from "../../features/actions";
+import { useDispatch } from "react-redux";
+import { URLS, TEXTS } from "../../constants/index";
+import "./header.css";
 export const Header = () => {
   const [country, setCountry] = useState("worldwide");
   const dispatch = useDispatch();
-  const url = "https://disease.sh/v3/covid-19/countries";
+  const url = URLS.ALL_COUNTRIES;
   const data = useUrlFetch(url);
 
   const countries = data.map((item) => {
@@ -31,7 +32,7 @@ export const Header = () => {
       {/* Dropdown of countries */}
       <FormControl className="app__dropdown">
         <Select variant="outlined" value={country} onChange={onCountryChange}>
-          <MenuItem value="worldwide">Worldwide</MenuItem>
+          <MenuItem value="worldwide">{TEXTS.WORLDWIDE}</MenuItem>
           {countries &&
             countries.map((country) => (
               <MenuItem value={country.value}>{country.name}</MenuItem>

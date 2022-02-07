@@ -1,8 +1,10 @@
 import React from "react";
-import { useUrlFetch } from "../Hooks/useUrlFetch";
-import { sortData } from "../utils";
+import { useUrlFetch } from "../../hooks/index";
+import { sortData } from "../../util";
+import { URLS } from "../../constants/index";
+import "./table.css";
 export const Table = () => {
-  const url = "https://disease.sh/v3/covid-19/countries";
+  const url = URLS.ALL_COUNTRIES;
   const data = useUrlFetch(url);
   const sortedData = sortData(data);
   return (

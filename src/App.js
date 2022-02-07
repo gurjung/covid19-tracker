@@ -1,18 +1,18 @@
-import "./App.css";
-import { useState } from "react";
-import { Header } from "./Components/Header";
-import { InfoBox } from "./Components/InfoBox";
-import { Map } from "./Components/Map";
-import { Table } from "./Components/Table"; 
+import { Header } from "./components/Header/Header";
+import { InfoBox } from "./components/InfoBox/InfoBox";
+import { Map } from "./components/Map/Map";
+import { Table } from "./components/Table/Table";
 import { Card, CardContent } from "@mui/material/";
 import { useSelector } from "react-redux";
-import { useUrlFetch } from "./Hooks/useUrlFetch";
+import { useUrlFetch } from "./hooks/index";
+import { TEXTS, URLS } from "./constants/index";
+import "./App.css";
 // https://disease.sh/v3/covid-19/countries
-function App() {
+export const App = () => {
   const country = useSelector((state) => state.country);
   const url =
     country === "worldwide"
-      ? "https://disease.sh/v3/covid-19/all"
+      ? URLS.WORLDWIDE
       : `https://disease.sh/v3/covid-19/countries/${country}`;
   const data = useUrlFetch(url);
   console.log(data, "info box data");
@@ -56,11 +56,9 @@ function App() {
         </CardContent>
         {/* Chart */}
         <CardContent>
-          <h3>Worldwide new cases</h3>
+          <h3>{TEXTS.WORLDWIDE_NEW_CASES}</h3>
         </CardContent>
       </Card>
     </div>
   );
-}
-
-export default App;
+};
