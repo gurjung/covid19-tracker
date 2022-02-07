@@ -4,7 +4,7 @@ import { Map } from "./components/Map/Map";
 import { Table } from "./components/Table/Table";
 import { Card, CardContent } from "@mui/material/";
 import { useSelector } from "react-redux";
-import { useUrlFetch } from "./hooks";
+import { useUrlFetch } from "./hooks/index";
 import { TEXTS, URLS } from "./constants/index";
 import "./App.css";
 // https://disease.sh/v3/covid-19/countries
