@@ -16,20 +16,19 @@ export const App = () => {
       : `https://disease.sh/v3/covid-19/countries/${country}`;
   const data = useUrlFetch(url);
   console.log(data, "info box data");
-  // const countryInfo = data.map((item) => {
-  //   return {
-  //     todayCases: item.todayCases,
-  //     todayDeaths: item.todayDeaths,
-  //     todayRecovered: item.todayRecovered,
-  //     totalCases: item.cases,
-  //     totalDeaths: item.deaths,
-  //     totalRecovered: item.recovered,
-  //   };
-  // });
+
+  const allCountriesData = useUrlFetch(URLS.ALL_COUNTRIES);
+  const countriesData = allCountriesData.map((item) => {
+    return {
+      name: item.country,
+      value: item.countryInfo.iso3,
+    };
+  });
+
   return (
     <div className="app">
       <div className="app__left">
-        <Header />
+        <Header countries={countriesData}/>
         <div className="app__stats">
           <InfoBox
             title="Corona Cases"
@@ -52,6 +51,7 @@ export const App = () => {
       <Card className="app__right">
         {/* Table */}
         <CardContent>
+          <h3>Live Cases by Country</h3>
           <Table />
         </CardContent>
         {/* Chart */}
