@@ -27,7 +27,7 @@ export const Header = ({ countries }) => {
           <MenuItem value="worldwide">{TEXTS.WORLDWIDE}</MenuItem>
           {countries &&
             countries.map((country) => (
-              <MenuItem value={country.value}>{country.name}</MenuItem>
+              <MenuItem key={country.id} value={country.value}>{country.name}</MenuItem>
             ))}
         </Select>
       </FormControl>
