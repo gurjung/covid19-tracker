@@ -2,9 +2,10 @@ import { Header } from "./components/Header/Header";
 import { InfoBox } from "./components/InfoBox/InfoBox";
 import { Map } from "./components/Map/Map";
 import { Table } from "./components/Table/Table";
+import { LineGraph } from "./components/LineGraph/LineGraph";
 import { Card, CardContent } from "@mui/material/";
 import { useSelector } from "react-redux";
-import { useUrlFetch } from "./hooks/index";
+import { useUrlFetch } from "./hooks_/index";
 import { TEXTS, URLS } from "./constants/index";
 import { nanoid } from "nanoid";
 import "./App.css";
@@ -57,9 +58,10 @@ export const App = () => {
           <h3>Live Cases by Country</h3>
           <Table data={countriesData} />
         </CardContent>
-        {/* Chart */}
+        {/* Graph */}
         <CardContent>
           <h3>{TEXTS.WORLDWIDE_NEW_CASES}</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
