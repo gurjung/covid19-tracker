@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material/";
-import { useUrlFetch } from "../../hooks/index";
 import { setCountryCode } from "../../features/actions";
 import { useDispatch } from "react-redux";
-import { URLS, TEXTS } from "../../constants/index";
+import { TEXTS } from "../../constants/index";
 import "./header.css";
 export const Header = ({ countries }) => {
   console.log(countries,'....')

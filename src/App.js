@@ -5,7 +5,7 @@ import { Table } from "./components/Table/Table";
 import { LineGraph } from "./components/LineGraph/LineGraph";
 import { Card, CardContent } from "@mui/material/";
 import { useSelector } from "react-redux";
-import { useUrlFetch } from "./hooks_/index";
+import { useUrlFetch } from "./hooks/index";
 import { TEXTS, URLS } from "./constants/index";
 import { nanoid } from "nanoid";
 import "./App.css";
