@@ -6,6 +6,7 @@ import { Card, CardContent } from "@mui/material/";
 import { useSelector } from "react-redux";
 import { useUrlFetch } from "./hooks/index";
 import { TEXTS, URLS } from "./constants/index";
+import { nanoid } from "nanoid";
 import "./App.css";
 // https://disease.sh/v3/covid-19/countries
 export const App = () => {
@@ -16,20 +17,21 @@ export const App = () => {
       : `https://disease.sh/v3/covid-19/countries/${country}`;
   const data = useUrlFetch(url);
   console.log(data, "info box data");
-  // const countryInfo = data.map((item) => {
-  //   return {
-  //     todayCases: item.todayCases,
-  //     todayDeaths: item.todayDeaths,
-  //     todayRecovered: item.todayRecovered,
-  //     totalCases: item.cases,
-  //     totalDeaths: item.deaths,
-  //     totalRecovered: item.recovered,
-  //   };
-  // });
+
+  const allCountriesData = useUrlFetch(URLS.ALL_COUNTRIES);
+  const countriesData = allCountriesData.map((item) => {
+    return {
+      id: nanoid(4),
+      name: item.country,
+      value: item.countryInfo.iso3,
+      cases: item.cases,
+    };
+  });
+
   return (
     <div className="app">
       <div className="app__left">
-        <Header />
+        <Header countries={countriesData} />
         <div className="app__stats">
           <InfoBox
             title="Corona Cases"
@@ -52,7 +54,8 @@ export const App = () => {
       <Card className="app__right">
         {/* Table */}
         <CardContent>
-          <Table />
+          <h3>Live Cases by Country</h3>
+          <Table data={countriesData} />
         </CardContent>
         {/* Chart */}
         <CardContent>
