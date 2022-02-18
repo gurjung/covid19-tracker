@@ -29,6 +29,8 @@ export const App = () => {
     };
   });
 
+  const lineGraphData = useUrlFetch(URLS.LAST_DAYS)
+
   return (
     <div className="app">
       <div className="app__left">
@@ -61,7 +63,7 @@ export const App = () => {
         {/* Graph */}
         <CardContent>
           <h3>{TEXTS.WORLDWIDE_NEW_CASES}</h3>
-          <LineGraph />
+          <LineGraph data={lineGraphData} />
         </CardContent>
       </Card>
     </div>
