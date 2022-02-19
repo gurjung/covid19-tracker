@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Chart as ChartJS } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import numeral from "numeral";
 import { options } from "./linegraph.data";
 import { buildChartData } from "../../util/index";
 export const LineGraph = ({ data }) => {
-  /*data format for Chart
-    data=[{
-        x:
-        y:
-    },{
-        x:
-        y:
-    }]
-*/
-  const [graphData, setGraphData] = useState("");
+  const [graphData, setGraphData] = useState({});
 
   useEffect(() => {
     const chartData = buildChartData(data);
@@ -22,7 +11,20 @@ export const LineGraph = ({ data }) => {
   }, [data]);
   return (
     <div className="graph">
-      <h1>IM IN GRAPH</h1>
+      {graphData?.length && (
+        <Line
+          data={{
+            datasets: [
+              {
+                backgroundColor: "rgba(204, 16, 52, 0.5)",
+                borderColor: "#CC1034",
+                data: graphData,
+              },
+            ],
+          }}
+          options={options}
+        />
+      )}
     </div>
   );
 };
