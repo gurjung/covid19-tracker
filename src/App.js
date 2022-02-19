@@ -2,6 +2,7 @@ import { Header } from "./components/Header/Header";
 import { InfoBox } from "./components/InfoBox/InfoBox";
 import { Map } from "./components/Map/Map";
 import { Table } from "./components/Table/Table";
+import { LineGraph } from "./components/LineGraph/LineGraph";
 import { Card, CardContent } from "@mui/material/";
 import { useSelector } from "react-redux";
 import { useUrlFetch } from "./hooks/index";
@@ -27,6 +28,8 @@ export const App = () => {
       cases: item.cases,
     };
   });
+
+  const lineGraphData = useUrlFetch(URLS.LAST_DAYS)
 
   return (
     <div className="app">
@@ -57,9 +60,10 @@ export const App = () => {
           <h3>Live Cases by Country</h3>
           <Table data={countriesData} />
         </CardContent>
-        {/* Chart */}
+        {/* Graph */}
         <CardContent>
           <h3>{TEXTS.WORLDWIDE_NEW_CASES}</h3>
+          <LineGraph data={lineGraphData} />
         </CardContent>
       </Card>
     </div>
