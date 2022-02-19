@@ -1,4 +1,4 @@
-export const buildChartData = (data, type = "cases") => {
+export const buildChartData = (data, casesType = "cases") => {
   let chartData = [];
   let lastDataPoint; //to get current cases (12/2/22 - 11/2/22{last data point})
   for (let date in data.cases) {
@@ -7,11 +7,11 @@ export const buildChartData = (data, type = "cases") => {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date, //date = 12/2/22
-        y: data[type][date] - lastDataPoint, //data[type][date] = particular date value 353715237
+        y: data[casesType][date] - lastDataPoint, //data[type][date] = particular date value 353715237
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = data[type][date];
+    lastDataPoint = data[casesType][date];
   }
   return chartData;
 };
