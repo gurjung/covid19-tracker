@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { InfoBox } from "./components/InfoBox/InfoBox";
 import { Map } from "./components/Map/Map";
@@ -13,12 +14,13 @@ import "leaflet/dist/leaflet.css";
 // https://disease.sh/v3/covid-19/countries
 export const App = () => {
   const country = useSelector((state) => state.country);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
   const url =
     country === "worldwide"
       ? URLS.WORLDWIDE
       : `https://disease.sh/v3/covid-19/countries/${country}`;
   const data = useUrlFetch(url);
-  console.log(data, "info box data");
 
   const allCountriesData = useUrlFetch(URLS.ALL_COUNTRIES);
   const countriesData = allCountriesData.map((item) => {
@@ -30,8 +32,11 @@ export const App = () => {
     };
   });
 
-  const lineGraphData = useUrlFetch(URLS.LAST_DAYS)
-
+  const lineGraphData = useUrlFetch(URLS.LAST_DAYS);
+  useEffect(() => {
+    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+    setMapZoom(4);
+  }, [data]);
   return (
     <div className="app">
       <div className="app__left">
@@ -53,7 +58,7 @@ export const App = () => {
             totalCases={data.deaths}
           />
         </div>
-        <Map />
+        <Map center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
         {/* Table */}
