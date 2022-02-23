@@ -9,6 +9,7 @@ import { useUrlFetch } from "./hooks/index";
 import { TEXTS, URLS } from "./constants/index";
 import { nanoid } from "nanoid";
 import "./App.css";
+import "leaflet/dist/leaflet.css";
 // https://disease.sh/v3/covid-19/countries
 export const App = () => {
   const country = useSelector((state) => state.country);
