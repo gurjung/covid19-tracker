@@ -17,11 +17,10 @@ export const App = () => {
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const url =
-    country === "worldwide"
-      ? URLS.WORLDWIDE
-      : `https://disease.sh/v3/covid-19/countries/${country}`;
+    country === "worldwide" ? URLS.WORLDWIDE : URLS.ALL_COUNTRIES + country;
   const data = useUrlFetch(url);
-
+  console.log(URLS.ALL_COUNTRIES + country,'URLS')
+  console.log(data.countryInfo, "...");
   const allCountriesData = useUrlFetch(URLS.ALL_COUNTRIES);
   const countriesData = allCountriesData.map((item) => {
     return {
@@ -33,10 +32,11 @@ export const App = () => {
   });
 
   const lineGraphData = useUrlFetch(URLS.LAST_DAYS);
-  useEffect(() => {
+  /*useEffect(() => {
     setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
     setMapZoom(4);
-  }, [data]);
+  }, [data.length]);
+  */
   return (
     <div className="app">
       <div className="app__left">
