@@ -19,7 +19,6 @@ export const App = () => {
   const url =
     country === "worldwide" ? URLS.WORLDWIDE : URLS.ALL_COUNTRIES + country;
   const data = useUrlFetch(url);
-  console.log(URLS.ALL_COUNTRIES + country,'URLS')
   console.log(data.countryInfo, "...");
   const allCountriesData = useUrlFetch(URLS.ALL_COUNTRIES);
   const countriesData = allCountriesData.map((item) => {
