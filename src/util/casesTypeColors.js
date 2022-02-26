@@ -1,6 +1,6 @@
 export const casesTypeColors = {
   cases: {
-    hex: "#CC1034",
+    hex: "#fb4443",
     multiplier: 100, //size of circle
   },
   recovered: {
@@ -8,7 +8,7 @@ export const casesTypeColors = {
     multiplier: 150,
   },
   deaths: {
-    hex: "#fb4443",
+    hex: "#CC1034",
     multiplier: 250,
   },
 };
