@@ -1,14 +1,14 @@
 export const casesTypeColors = {
   cases: {
     hex: "#CC1034",
-    multiplier: 800, //size of circle
+    multiplier: 100, //size of circle
   },
   recovered: {
     hex: "#7dd71d",
-    multiplier: 1200,
+    multiplier: 150,
   },
   deaths: {
     hex: "#fb4443",
-    multiplier: 2000,
+    multiplier: 250,
   },
 };
