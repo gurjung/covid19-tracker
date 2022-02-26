@@ -16,6 +16,7 @@ export const App = () => {
   const country = useSelector((state) => state.country);
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
   const url =
     country === "worldwide" ? URLS.WORLDWIDE : URLS.ALL_COUNTRIES + country;
   const data = useUrlFetch(url);
@@ -33,8 +34,9 @@ export const App = () => {
   useEffect(() => {
     data.countryInfo &&
       setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+    setMapCountries(allCountriesData);
     setMapZoom(4);
-  }, [data.countryInfo]);
+  }, [allCountriesData, data.countryInfo]);
   return (
     <div className="app">
       <div className="app__left">
@@ -56,7 +58,7 @@ export const App = () => {
             totalCases={data.deaths}
           />
         </div>
-        <Map center={mapCenter} zoom={mapZoom} />
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
         {/* Table */}
