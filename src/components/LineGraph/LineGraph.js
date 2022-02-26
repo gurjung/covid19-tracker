@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { options } from "./linegraph.data";
 import { buildChartData } from "../../util/index";
-export const LineGraph = ({ data }) => {
+export const LineGraph = ({ data, casesType = "cases", ...props }) => {
   const [graphData, setGraphData] = useState({});
 
   useEffect(() => {
-    const chartData = buildChartData(data);
+    const chartData = buildChartData(data, casesType);
     setGraphData(chartData);
-  }, [data]);
+  }, [casesType, data]);
   return (
-    <div className="graph">
+    <div className={props.className}>
       {graphData?.length && (
         <Line
           data={{

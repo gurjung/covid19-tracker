@@ -5,13 +5,11 @@ import { useDispatch } from "react-redux";
 import { TEXTS } from "../../constants/index";
 import "./header.css";
 export const Header = ({ countries }) => {
-  console.log(countries,'....')
   const [country, setCountry] = useState("worldwide");
   const dispatch = useDispatch();
 
   const onCountryChange = (e) => {
     const code = e.target.value;
-    console.log(code, "header countryCode");
     // code is Country Code
     setCountry(code);
     dispatch(setCountryCode(code));

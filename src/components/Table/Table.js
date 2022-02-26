@@ -1,5 +1,6 @@
 import React from "react";
 import { sortData } from "../../util";
+import numeral from "numeral";
 import "./table.css";
 export const Table = ({ data }) => {
   const sortedData = sortData(data);
@@ -9,7 +10,7 @@ export const Table = ({ data }) => {
         <tr key={id}>
           <td>{name}</td>
           <td>
-            <strong>{cases}</strong>
+            <strong>{numeral(cases).format("0,0")}</strong>
           </td>
         </tr>
       ))}
