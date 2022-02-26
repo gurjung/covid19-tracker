@@ -78,13 +78,15 @@ export const App = () => {
         <CardContent>
           <h3>{TEXTS.LIVE_CASES}</h3>
           <Table data={countriesData} />
-        </CardContent>
-        {/* Graph */}
-        <CardContent>
-          <h3>
+          {/* Graph */}
+          <h3 className="app__graphTitle">
             {TEXTS.WORLDWIDE_NEW} {casesType}
           </h3>
-          <LineGraph data={lineGraphData} casesType={casesType} />
+          <LineGraph
+            className="app__graph"
+            data={lineGraphData}
+            casesType={casesType}
+          />
         </CardContent>
       </Card>
     </div>

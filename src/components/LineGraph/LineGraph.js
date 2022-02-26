@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { options } from "./linegraph.data";
 import { buildChartData } from "../../util/index";
-export const LineGraph = ({ data, casesType = "cases" }) => {
+export const LineGraph = ({ data, casesType = "cases", ...props }) => {
   const [graphData, setGraphData] = useState({});
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export const LineGraph = ({ data, casesType = "cases" }) => {
     setGraphData(chartData);
   }, [casesType, data]);
   return (
-    <div className="graph">
+    <div className={props.className}>
       {graphData?.length && (
         <Line
           data={{
