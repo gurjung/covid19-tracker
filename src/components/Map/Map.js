@@ -1,27 +1,10 @@
 import React from "react";
+import { casesTypeColors } from "../../util";
+import numeral from "numeral";
+import { Map as LeafletMap, TileLayer, Circle, Popup } from "react-leaflet";
 import "./map.css";
-import {
-  Map as LeafletMap,
-  TileLayer,
-  Circle,
-  Popup,
-} from "react-leaflet";
-export const Map = ({ countries, casesType = "cases", center, zoom }) => {
 
-  const casesTypeColors = {
-    cases: {
-      hex: "#CC1034",
-      multiplier: 400, //size of circle
-    },
-    recovered: {
-      hex: "#7dd71d",
-      multiplier: 600,
-    },
-    deaths: {
-      hex: "#fb4443",
-      multiplier: 1000,
-    },
-  };
+export const Map = ({ countries, casesType = "cases", center, zoom }) => {
   return (
     <div className="map">
       <LeafletMap center={center} zoom={zoom}>
@@ -43,7 +26,24 @@ export const Map = ({ countries, casesType = "cases", center, zoom }) => {
             }
           >
             <Popup>
-              <h1>Im a PopUp</h1>
+              <div className="info-container">
+                <div
+                  className="info-flag"
+                  style={{
+                    backgroundImage: `url(${country.countryInfo.flag})`,
+                  }}
+                ></div>
+                <div className="info-name">{country.country}</div>
+                <div className="info-confirmed">
+                  Cases: {numeral(country.cases).format("0,0")}
+                </div>
+                <div className="info-recovered">
+                  Recovered: {numeral(country.recovered).format("0,0")}
+                </div>
+                <div className="info-deaths">
+                  Deaths: {numeral(country.deaths).format("0,0")}
+                </div>
+              </div>
             </Popup>
           </Circle>
         ))}
