@@ -11,7 +11,7 @@ import { TEXTS, URLS } from "./constants/index";
 import { nanoid } from "nanoid";
 import "./App.css";
 import "leaflet/dist/leaflet.css";
-// https://disease.sh/v3/covid-19/countries
+
 export const App = () => {
   const country = useSelector((state) => state.country);
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
@@ -19,7 +19,6 @@ export const App = () => {
   const url =
     country === "worldwide" ? URLS.WORLDWIDE : URLS.ALL_COUNTRIES + country;
   const data = useUrlFetch(url);
-  console.log(data.countryInfo, "...");
   const allCountriesData = useUrlFetch(URLS.ALL_COUNTRIES);
   const countriesData = allCountriesData.map((item) => {
     return {
@@ -31,11 +30,11 @@ export const App = () => {
   });
 
   const lineGraphData = useUrlFetch(URLS.LAST_DAYS);
-  /*useEffect(() => {
-    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+  useEffect(() => {
+    data.countryInfo &&
+      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
     setMapZoom(4);
-  }, [data.length]);
-  */
+  }, [data.countryInfo]);
   return (
     <div className="app">
       <div className="app__left">
@@ -62,7 +61,7 @@ export const App = () => {
       <Card className="app__right">
         {/* Table */}
         <CardContent>
-          <h3>Live Cases by Country</h3>
+          <h3>{TEXTS.LIVE_CASES}</h3>
           <Table data={countriesData} />
         </CardContent>
         {/* Graph */}
